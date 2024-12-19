@@ -43,5 +43,10 @@
 }
 
 footer {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    background: #cdcdcd;
+    color: black;
 }

@@ -80,7 +80,7 @@ function App() {
             </section>
 
             <footer>
-                Made by Mohana Misra
+                Made by Mohana Misra &#169;
             </footer>
         </div>
     )
