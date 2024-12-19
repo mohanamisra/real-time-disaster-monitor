@@ -4,25 +4,27 @@ import {fetchAllDisasters, fetchOngoingDisasters} from "./api/index.js";
 import Map from "./Map/Map.jsx";
 
 function App() {
-    const [totalDisasterCount, setTotalDisasterCount] = useState(122);
-    const [ongoingDisasterCount, setOngoingDisasterCount] = useState(2);
-    const [ongoingDisasterList, setOngoingDisasterList] = useState(['Tropical Cyclone Fengal', 'Tropical Cyclone Remal']);
+    const [totalDisasterCount, setTotalDisasterCount] = useState(0);
+    const [ongoingDisasterCount, setOngoingDisasterCount] = useState(0);
+    const [numAffected, setNumAffected] = useState(0);
+    const [numShelters, setNumShelters] = useState(0);
+    // const [ongoingDisasterList, setOngoingDisasterList] = useState(['Tropical Cyclone Fengal', 'Tropical Cyclone Remal']);
 
-    // useEffect(() => {
-    //     fetchAllDisasters()
-    //         .then(response => {
-    //             setTotalDisasterCount(response.data.totalCount)
-    //         })
-    //     fetchOngoingDisasters()
-    //         .then(response => {
-    //             const newOngoingDisasterList = []
-    //             response.data.data.forEach(disaster => {
-    //                 newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
-    //             })
-    //             setOngoingDisasterCount(response.data.totalCount)
-    //             setOngoingDisasterList(newOngoingDisasterList)
-    //         })
-    // }, []);
+    useEffect(() => {
+        fetchAllDisasters()
+            .then(response => {
+                setTotalDisasterCount(response.data.totalCount)
+            })
+        fetchOngoingDisasters()
+            .then(response => {
+                // const newOngoingDisasterList = []
+                // response.data.data.forEach(disaster => {
+                //     newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
+                // })
+                setOngoingDisasterCount(response.data.totalCount)
+                // setOngoingDisasterList(newOngoingDisasterList)
+            })
+    }, []);
 
     return (
         <div className='app-container'>
@@ -39,9 +41,9 @@ function App() {
                                 <li>Total Disasters Count: <span className="data">{totalDisasterCount}</span></li>
                                 <li>Ongoing Disasters: <span className="data">{ongoingDisasterCount}</span></li>
                                 <li>Total People Affected Currently (estimated): <span
-                                    className="data">{totalDisasterCount}</span></li>
+                                    className="data">{numAffected}</span></li>
                                 <li>No. of Active Shelters near Ongoing Disasters <span
-                                    className="data">{totalDisasterCount}</span></li>
+                                    className="data">{numShelters}</span></li>
                             </ul>
                         </div>
                     </section>
