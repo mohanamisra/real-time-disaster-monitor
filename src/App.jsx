@@ -25,13 +25,35 @@ function App() {
 
     return (
         <>
-            <p>Total Disasters: {totalDisasterCount}</p>
-            <p>Currently Ongoing: {ongoingDisasterCount}</p>
-            {ongoingDisasterList.map((disaster, index) => {
-                return (
-                    <p key={index}>{disaster}</p>
-                )
-            })}
+            <h1>Real-Time Disaster Monitoring in India</h1>
+
+            <section>
+                <div className = 'sidebar'>
+                    <div className = "overview">
+                        <h2>General Overview</h2>
+                        <div className="content">
+                            <ul>
+                                <li>Total Disasters Count: <span className = "data">{totalDisasterCount}</span></li>
+                                <li>Ongoing Disasters: <span className = "data">{ongoingDisasterCount}</span></li>
+                                <li>Total People Affected Currently (estimated): <span className = "data">{totalDisasterCount}</span></li>
+                                <li>No. of Active Shelters near Ongoing Disasters <span className = "data">{totalDisasterCount}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="help-out">
+                    <div className="content">
+                        <input type="search"/>
+                        <p>Provide assistance and relief to disaster affected individuals.</p>
+                        <ul className="jobs">
+                            
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+
         </>
     )
 }
