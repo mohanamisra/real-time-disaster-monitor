@@ -3,3 +3,27 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar {
+    border: 1px solid red;
+    min-height: 100vh;
+}
+
+.dashboard-content {
+    display: flex;
+}
+
+.tools {
+    display: flex;
+}
+
+footer {
+    text-align: center;
+}
