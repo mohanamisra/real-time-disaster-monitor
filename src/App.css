@@ -21,6 +21,8 @@
     flex-grow: 1;
     max-width: 400px;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     /*border: 1px solid blue;*/
 }
 
