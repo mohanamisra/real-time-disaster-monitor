@@ -31,45 +31,45 @@ function App() {
             </header>
 
             <div className="dashboard-content">
-                    <div className='sidebar'>
-                        <div className="overview">
-                            <h2>General Overview</h2>
-                            <div className="content">
-                                <ul>
-                                    <li>Total Disasters Count: <span className="data">{totalDisasterCount}</span></li>
-                                    <li>Ongoing Disasters: <span className="data">{ongoingDisasterCount}</span></li>
-                                    <li>Total People Affected Currently (estimated): <span
-                                        className="data">{totalDisasterCount}</span></li>
-                                    <li>No. of Active Shelters near Ongoing Disasters <span
-                                        className="data">{totalDisasterCount}</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="help-out">
-                            <div className="content">
-                                <h2>Help Out</h2>
-                                <input type="search"/>
-                                <p>Provide assistance and relief to disaster affected individuals.</p>
-                                <ul className="jobs">
-
-                                </ul>
-                            </div>
+                <div className='sidebar'>
+                    <div className="overview">
+                        <h2>General Overview</h2>
+                        <div className="content">
+                            <ul>
+                                <li>Total Disasters Count: <span className="data">{totalDisasterCount}</span></li>
+                                <li>Ongoing Disasters: <span className="data">{ongoingDisasterCount}</span></li>
+                                <li>Total People Affected Currently (estimated): <span
+                                    className="data">{totalDisasterCount}</span></li>
+                                <li>No. of Active Shelters near Ongoing Disasters <span
+                                    className="data">{totalDisasterCount}</span></li>
+                            </ul>
                         </div>
                     </div>
+                    <div className="help-out">
+                        <div className="content">
+                            <h2>Help Out</h2>
+                            <input type="search"/>
+                            <p>Provide assistance and relief to disaster affected individuals.</p>
+                            <ul className="jobs">
 
-                    <div className="general-area">
-                        <div className = "map">
-                            <Map/>
-                        </div>
-                        <div className="tools">
-                            <div className="ai-flood-predictor">
-                                <h2>AI Flood Predictor</h2>
-                            </div>
-                            <div className="ai-damage-assement">
-                                <h2>AI Damage Assessment Tool</h2>
-                            </div>
+                            </ul>
                         </div>
                     </div>
+                </div>
+
+                <div className="general-area">
+                    <div className="map">
+                        <Map/>
+                    </div>
+                    <div className="tools">
+                        <div className="ai-flood-predictor">
+                            <h2>AI Flood Predictor</h2>
+                        </div>
+                        <div className="ai-damage-assement">
+                            <h2>AI Damage Assessment Tool</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <footer>
