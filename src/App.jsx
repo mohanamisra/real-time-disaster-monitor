@@ -25,7 +25,7 @@ function App() {
     // }, []);
 
     return (
-        <>
+        <div className = 'app-container'>
             <h1>Real-Time Disaster Monitoring in India</h1>
 
             <section>
@@ -71,7 +71,7 @@ function App() {
                 </div>
             </section>
 
-        </>
+        </div>
     )
 }
 
