@@ -25,52 +25,57 @@ function App() {
     // }, []);
 
     return (
-        <div className = 'app-container'>
-            <h1>Real-Time Disaster Monitoring in India</h1>
+        <div className='app-container'>
+            <header><h1>Real-Time Disaster Monitoring in India</h1></header>
 
-            <section>
-                <div className = 'sidebar'>
-                    <div className = "overview">
-                        <h2>General Overview</h2>
-                        <div className="content">
-                            <ul>
-                                <li>Total Disasters Count: <span className = "data">{totalDisasterCount}</span></li>
-                                <li>Ongoing Disasters: <span className = "data">{ongoingDisasterCount}</span></li>
-                                <li>Total People Affected Currently (estimated): <span className = "data">{totalDisasterCount}</span></li>
-                                <li>No. of Active Shelters near Ongoing Disasters <span className = "data">{totalDisasterCount}</span></li>
-                            </ul>
+            <div className="dashboard-content">
+                <section>
+                    <div className='sidebar'>
+                        <div className="overview">
+                            <h2>General Overview</h2>
+                            <div className="content">
+                                <ul>
+                                    <li>Total Disasters Count: <span className="data">{totalDisasterCount}</span></li>
+                                    <li>Ongoing Disasters: <span className="data">{ongoingDisasterCount}</span></li>
+                                    <li>Total People Affected Currently (estimated): <span
+                                        className="data">{totalDisasterCount}</span></li>
+                                    <li>No. of Active Shelters near Ongoing Disasters <span
+                                        className="data">{totalDisasterCount}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="help-out">
+                            <div className="content">
+                                <h2>Help Out</h2>
+                                <input type="search"/>
+                                <p>Provide assistance and relief to disaster affected individuals.</p>
+                                <ul className="jobs">
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div className="help-out">
-                    <div className="content">
-                        <input type="search"/>
-                        <h2>Help Out</h2>
-                        <p>Provide assistance and relief to disaster affected individuals.</p>
-                        <ul className="jobs">
-
-                        </ul>
+                <section>
+                    <div className="general-area">
+                        <Map/>
+                        <div className="tools">
+                            <div className="ai-flood-predictor">
+                                <h2>AI Flood Predictor</h2>
+                            </div>
+                            <div className="ai-damage-assement">
+                                <h2>AI Damage Assessment Tool</h2>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
-
+                </section>
+            </div>
             <section>
-                <Map/>
+                <footer>
+                    Made by Mohana Misra
+                </footer>
             </section>
-
-            <section>
-                <div className="ai-flood-predictor">
-                    <h2>AI Flood Predictor</h2>
-                </div>
-            </section>
-
-            <section>
-                <div className="ai-damage-assement">
-                    <h2>AI Damage Assessment Tool</h2>
-                </div>
-            </section>
-
         </div>
     )
 }
