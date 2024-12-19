@@ -1,6 +1,6 @@
 import './App.css'
 import {useState, useEffect} from 'react'
-import {fetchAllDisasters, fetchOngoingDisasters} from "./api/index.js";
+import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./api/index.js";
 import Map from "./Map/Map.jsx";
 
 function App() {
@@ -8,21 +8,43 @@ function App() {
     const [ongoingDisasterCount, setOngoingDisasterCount] = useState(0);
     const [numAffected, setNumAffected] = useState(0);
     const [numShelters, setNumShelters] = useState(0);
+    const [jobsList, setJobList] = useState([]);
     // const [ongoingDisasterList, setOngoingDisasterList] = useState(['Tropical Cyclone Fengal', 'Tropical Cyclone Remal']);
 
     useEffect(() => {
         fetchAllDisasters()
             .then(response => {
                 setTotalDisasterCount(response.data.totalCount)
-            })
+            });
+
         fetchOngoingDisasters()
             .then(response => {
                 // const newOngoingDisasterList = []
-                // response.data.data.forEach(disaster => {
-                //     newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
-                // })
+                response.data.data.forEach(disaster => {
+                    // newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
+                    fetchDisasterReport(Number(disaster.id))
+                        .then(response => {
+                            // console.log(response.data.data[0]);
+                        })
+                })
                 setOngoingDisasterCount(response.data.totalCount)
                 // setOngoingDisasterList(newOngoingDisasterList)
+            });
+
+        fetchJobs()
+            .then(response => {
+                const newJobsList = [];
+                response.data.data.forEach(job => {
+                    const newJob = {
+                        title: job.fields.title,
+                        source: job.fields.source[0].name,
+                        closing: job.fields.date.closing,
+                        url: job.fields.url,
+
+                    };
+                    newJobsList.push(newJob);
+                })
+                setJobList(newJobsList);
             })
     }, []);
 
@@ -53,7 +75,9 @@ function App() {
                             <input type="search"/>
                             <p>Provide assistance and relief to disaster affected individuals.</p>
                             <ul className="jobs">
-
+                                {jobsList.map((job, index) => (
+                                    <li key = {index}>{job.title}</li>
+                                ))}
                             </ul>
                         </div>
                     </section>
