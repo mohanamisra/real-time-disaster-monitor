@@ -45,13 +45,31 @@ function App() {
                 <div className="help-out">
                     <div className="content">
                         <input type="search"/>
+                        <h2>Help Out</h2>
                         <p>Provide assistance and relief to disaster affected individuals.</p>
                         <ul className="jobs">
-                            
+
                         </ul>
                     </div>
                 </div>
+            </section>
 
+            <section>
+                <div className="map">
+
+                </div>
+            </section>
+
+            <section>
+                <div className="ai-flood-predictor">
+                    <h2>AI Flood Predictor</h2>
+                </div>
+            </section>
+
+            <section>
+                <div className="ai-damage-assement">
+                    <h2>AI Damage Assessment Tool</h2>
+                </div>
             </section>
 
         </>
