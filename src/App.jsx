@@ -30,9 +30,9 @@ function App() {
                 <h1>Real-Time Disaster Monitoring in India</h1>
             </header>
 
-            <div className="dashboard-content">
-                <div className='sidebar'>
-                    <div className="overview">
+            <section className="dashboard-content">
+                <section className='sidebar'>
+                    <section className="overview">
                         <h2>General Overview</h2>
                         <div className="content">
                             <ul>
@@ -44,8 +44,8 @@ function App() {
                                     className="data">{totalDisasterCount}</span></li>
                             </ul>
                         </div>
-                    </div>
-                    <div className="help-out">
+                    </section>
+                    <section className="help-out">
                         <div className="content">
                             <h2>Help Out</h2>
                             <input type="search"/>
@@ -54,23 +54,23 @@ function App() {
 
                             </ul>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </section>
 
                 <div className="general-area">
-                    <div className="map">
+                    <section className="map">
                         <Map/>
-                    </div>
-                    <div className="tools">
+                    </section>
+                    <section className="tools">
                         <div className="ai-flood-predictor">
                             <h2>AI Flood Predictor</h2>
                         </div>
                         <div className="ai-damage-assement">
                             <h2>AI Damage Assessment Tool</h2>
                         </div>
-                    </div>
+                    </section>
                 </div>
-            </div>
+            </section>
 
             <footer>
                 Made by Mohana Misra
