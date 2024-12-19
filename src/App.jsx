@@ -1,6 +1,7 @@
 import './App.css'
 import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters} from "./api/index.js";
+import Map from "./Map/map.jsx";
 
 function App() {
     const [totalDisasterCount, setTotalDisasterCount] = useState(122);
@@ -55,9 +56,7 @@ function App() {
             </section>
 
             <section>
-                <div className="map">
-
-                </div>
+                <Map/>
             </section>
 
             <section>
