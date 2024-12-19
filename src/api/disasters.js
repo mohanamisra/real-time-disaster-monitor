@@ -12,6 +12,12 @@ export const fetchOngoingDisasters = async() => {
         .get(`${BASE_URL}/disasters?appname=rwint-user-0&profile=list&preset=latest&slim=1&query%5Bvalue%5D=country.id%3A119+AND+status%3Acurrent&query%5Boperator%5D=AND`);
 }
 
-export default {
-    fetchAllDisasters,
+export const fetchDisasterReport = async (disasterID) => {
+    return await axios
+        .get(`${BASE_URL}/reports?appname=rwint-user-0&profile=list&preset=latest&slim=1&query%5Bvalue%5D=country.id%3A119+AND+disaster.id%3A${disasterID}&query%5Boperator%5D=AND`)
+}
+
+export const fetchJobs = async (disasterID) => {
+    return await axios
+        .get(`${BASE_URL}/jobs?appname=rwint-user-0&profile=list&preset=latest&slim=1&query%5Bvalue%5D=country.id%3A119&query%5Boperator%5D=AND`)
 }
