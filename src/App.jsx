@@ -76,7 +76,12 @@ function App() {
                             <p>Provide assistance and relief to disaster affected individuals.</p>
                             <ul className="jobs">
                                 {jobsList.map((job, index) => (
-                                    <li key = {index}>{job.title}</li>
+                                    <li key = {index}>
+                                        <span className = "title">{job.title}</span>
+                                        <span className = "source">{job.source}</span>
+                                        <span className = "closing">Apply by: {job.closing}</span>
+                                        <span className = "url"><a href = {job.url}>Link to apply</a></span>
+                                    </li>
                                 ))}
                             </ul>
                         </div>
