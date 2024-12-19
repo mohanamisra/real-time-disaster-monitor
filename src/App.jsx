@@ -26,10 +26,11 @@ function App() {
 
     return (
         <div className='app-container'>
-            <header><h1>Real-Time Disaster Monitoring in India</h1></header>
+            <header>
+                <h1>Real-Time Disaster Monitoring in India</h1>
+            </header>
 
             <div className="dashboard-content">
-                <section>
                     <div className='sidebar'>
                         <div className="overview">
                             <h2>General Overview</h2>
@@ -55,11 +56,11 @@ function App() {
                             </div>
                         </div>
                     </div>
-                </section>
 
-                <section>
                     <div className="general-area">
-                        <Map/>
+                        <div className = "map">
+                            <Map/>
+                        </div>
                         <div className="tools">
                             <div className="ai-flood-predictor">
                                 <h2>AI Flood Predictor</h2>
@@ -69,13 +70,11 @@ function App() {
                             </div>
                         </div>
                     </div>
-                </section>
             </div>
-            <section>
-                <footer>
-                    Made by Mohana Misra
-                </footer>
-            </section>
+
+            <footer>
+                Made by Mohana Misra
+            </footer>
         </div>
     )
 }
