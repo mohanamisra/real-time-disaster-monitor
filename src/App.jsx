@@ -3,25 +3,25 @@ import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters} from "./api/index.js";
 
 function App() {
-    const [totalDisasterCount, setTotalDisasterCount] = useState(0);
-    const [ongoingDisasterCount, setOngoingDisasterCount] = useState(0);
-    const [ongoingDisasterList, setOngoingDisasterList] = useState([]);
+    const [totalDisasterCount, setTotalDisasterCount] = useState(122);
+    const [ongoingDisasterCount, setOngoingDisasterCount] = useState(2);
+    const [ongoingDisasterList, setOngoingDisasterList] = useState(['Tropical Cyclone Fengal', 'Tropical Cyclone Remal']);
 
-    useEffect(() => {
-        fetchAllDisasters()
-            .then(response => {
-                setTotalDisasterCount(response.data.totalCount)
-            })
-        fetchOngoingDisasters()
-            .then(response => {
-                const newOngoingDisasterList = []
-                response.data.data.forEach(disaster => {
-                    newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
-                })
-                setOngoingDisasterCount(response.data.totalCount)
-                setOngoingDisasterList(newOngoingDisasterList)
-            })
-    }, []);
+    // useEffect(() => {
+    //     fetchAllDisasters()
+    //         .then(response => {
+    //             setTotalDisasterCount(response.data.totalCount)
+    //         })
+    //     fetchOngoingDisasters()
+    //         .then(response => {
+    //             const newOngoingDisasterList = []
+    //             response.data.data.forEach(disaster => {
+    //                 newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
+    //             })
+    //             setOngoingDisasterCount(response.data.totalCount)
+    //             setOngoingDisasterList(newOngoingDisasterList)
+    //         })
+    // }, []);
 
     return (
         <>
