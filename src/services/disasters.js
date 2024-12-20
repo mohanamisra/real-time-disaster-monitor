@@ -3,14 +3,7 @@ import axios from 'axios';
 const BASE_URL = "https://api.reliefweb.int/v1";
 
 export const fetchAllDisasters = async () => {
-    try {
-        const response = await axios.get("https://api.reliefweb.int/v1/disasters?appname=iammohanamisra&profile=list&preset=latest&slim=1&query%5Bvalue%5D=country.id%3A119&query%5Boperator%5D=AND");
-        console.log(response.data);
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching disasters:", error.message);
-        return { error: "Failed to fetch disasters" };
-    }
+    return await axios.get("https://api.reliefweb.int/v1/disasters?appname=iammohanamisra&profile=list&preset=latest&slim=1&query%5Bvalue%5D=country.id%3A119&query%5Boperator%5D=AND");
 };
 
 export const fetchOngoingDisasters = async() => {
