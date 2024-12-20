@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.dashboard-content {
+    display: flex;
+    /*border: 1px solid black;*/
+}
+
+
+.sidebar {
+    flex-grow: 1;
+    max-width: 400px;
+    min-height: 100vh;
+    /*border: 1px solid blue;*/
+}
+
+.general-area {
+    flex-grow: 10;
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid red;*/
+}
+
+.map {
+    height: 500px;
+    width: 100%;
+}
+
+
+.tools {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    background: #cdcdcd;
+    color: black;
+}
