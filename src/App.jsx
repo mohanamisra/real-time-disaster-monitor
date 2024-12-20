@@ -1,7 +1,7 @@
 import './App.css'
 import {useState, useEffect} from 'react'
-import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./services/index.js";
-import {fetchReports} from "./services/reports.js";
+// import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./services/index.js";
+// import {fetchReports} from "./services/reports.js";
 import Map from "./Map/Map.jsx";
 
 function App() {
@@ -13,45 +13,83 @@ function App() {
     // const [ongoingDisasterList, setOngoingDisasterList] = useState(['Tropical Cyclone Fengal', 'Tropical Cyclone Remal']);
 
     useEffect(() => {
-        fetchAllDisasters()
-            .then(response => {
-                setTotalDisasterCount(response.data.totalCount)
-            });
+        // Fetch total disasters count
+        fetch("/api/disasters")
+            .then(res => res.json())
+            .then(data => setTotalDisasterCount(data.totalCount))
+            .catch(console.error);
 
-        fetchOngoingDisasters()
-            .then(response => {
-                // const newOngoingDisasterList = []
-                response.data.data.forEach(disaster => {
-                    // newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
-                    fetchDisasterReport(Number(disaster.id))
-                        .then(response => {
-                            // console.log(response.data.data[0].fields.url);
-                            fetchReports(response.data.data[0].fields.url)
-                                .then(response => {
-                                    console.log(response.data);
-                                })
-                        })
-                })
-                setOngoingDisasterCount(response.data.totalCount)
-                // setOngoingDisasterList(newOngoingDisasterList)
-            });
+        // Fetch ongoing disasters
+        fetch("/api/disasters/ongoing")
+            .then(res => res.json())
+            .then(data => {
+                data.data.forEach(disaster => {
+                    fetch(`/api/disasters/${disaster.id}/reports`)
+                        .then(res => res.json())
+                        .then(reportData => {
+                            console.log(reportData); // Handle disaster-specific reports
+                        });
+                });
+                setOngoingDisasterCount(data.totalCount);
+            })
+            .catch(console.error);
 
-        fetchJobs()
-            .then(response => {
-                const newJobsList = [];
-                response.data.data.forEach(job => {
-                    const newJob = {
-                        title: job.fields.title,
-                        source: job.fields.source[0].name,
-                        closing: job.fields.date.closing,
-                        url: job.fields.url,
-
-                    };
-                    newJobsList.push(newJob);
-                })
+        // Fetch jobs
+        fetch("/api/jobs")
+            .then(res => res.json())
+            .then(data => {
+                const newJobsList = data.data.map(job => ({
+                    title: job.fields.title,
+                    source: job.fields.source[0].name,
+                    closing: job.fields.date.closing,
+                    url: job.fields.url
+                }));
                 setJobList(newJobsList);
-            });
+            })
+            .catch(console.error);
     }, []);
+
+
+    // useEffect(() => {
+    //     fetchAllDisasters()
+    //         .then(response => {
+    //             setTotalDisasterCount(response.data.totalCount)
+    //         });
+    //
+    //     fetchOngoingDisasters()
+    //         .then(response => {
+    //             // const newOngoingDisasterList = []
+    //             response.data.data.forEach(disaster => {
+    //                 // newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
+    //                 fetchDisasterReport(Number(disaster.id))
+    //                     .then(response => {
+    //                         // console.log(response.data.data[0].fields.url);
+    //                         // fetchReports(response.data.data[0].fields.url)
+    //                         //     .then(response => {
+    //                         //         console.log(response.data);
+    //                         //     })
+    //                     })
+    //             })
+    //             setOngoingDisasterCount(response.data.totalCount)
+    //             // setOngoingDisasterList(newOngoingDisasterList)
+    //         });
+    //
+    //     fetchJobs()
+    //         .then(response => {
+    //             const newJobsList = [];
+    //             response.data.data.forEach(job => {
+    //                 const newJob = {
+    //                     title: job.fields.title,
+    //                     source: job.fields.source[0].name,
+    //                     closing: job.fields.date.closing,
+    //                     url: job.fields.url,
+    //
+    //                 };
+    //                 newJobsList.push(newJob);
+    //             })
+    //             setJobList(newJobsList);
+    //         });
+    // }, []);
 
     return (
         <div className='app-container'>
