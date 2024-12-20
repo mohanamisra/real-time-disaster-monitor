@@ -1,6 +1,7 @@
 import './App.css'
 import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./services/index.js";
+import {fetchReports} from "./services/scraper.js";
 import Map from "./Map/Map.jsx";
 
 function App() {
@@ -24,7 +25,11 @@ function App() {
                     // newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
                     fetchDisasterReport(Number(disaster.id))
                         .then(response => {
-                            // console.log(response.data.data[0]);
+                            // console.log(response.data.data[0].fields.url);
+                            fetchReports(response.data.data[0].fields.url)
+                                .then(response => {
+                                    console.log(response);
+                                })
                         })
                 })
                 setOngoingDisasterCount(response.data.totalCount)
