@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./services/index.js";
 import {fetchReports} from "./services/scraper.js";
 import Map from "./Map/Map.jsx";
+import axios from "axios";
 
 function App() {
     const [totalDisasterCount, setTotalDisasterCount] = useState(0);
@@ -10,7 +11,6 @@ function App() {
     const [numAffected, setNumAffected] = useState(0);
     const [numShelters, setNumShelters] = useState(0);
     const [jobsList, setJobList] = useState([]);
-    // const [ongoingDisasterList, setOngoingDisasterList] = useState(['Tropical Cyclone Fengal', 'Tropical Cyclone Remal']);
 
     useEffect(() => {
         fetchAllDisasters()
@@ -20,20 +20,20 @@ function App() {
 
         fetchOngoingDisasters()
             .then(response => {
-                // const newOngoingDisasterList = []
                 response.data.data.forEach(disaster => {
-                    // newOngoingDisasterList.push(disaster.fields.name.substring(0, disaster.fields.name.indexOf(" -")))
                     fetchDisasterReport(Number(disaster.id))
                         .then(response => {
-                            // console.log(response.data.data[0].fields.url);
-                            fetchReports(response.data.data[0].fields.url)
+                            const reportUrl = response.data.data[0].fields.url;
+                            axios.get(`http://localhost:3000/fetch-report?url=${encodeURIComponent(reportUrl)}`)
                                 .then(response => {
-                                    console.log(response);
+                                    console.log(response.data.report); // Log the report content
                                 })
+                                .catch(error => {
+                                    console.error("Error fetching report from server:", error);
+                                });
                         })
                 })
                 setOngoingDisasterCount(response.data.totalCount)
-                // setOngoingDisasterList(newOngoingDisasterList)
             });
 
         fetchJobs()
