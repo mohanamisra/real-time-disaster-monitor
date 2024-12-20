@@ -13,40 +13,11 @@ function App() {
     // const [ongoingDisasterList, setOngoingDisasterList] = useState(['Tropical Cyclone Fengal', 'Tropical Cyclone Remal']);
 
     useEffect(() => {
-        // Fetch total disasters count
-        fetch("/api/disasters")
-            .then(res => res.json())
-            .then(data => setTotalDisasterCount(data.totalCount))
-            .catch(console.error);
-
-        // Fetch ongoing disasters
-        fetch("/api/disasters/ongoing")
+        fetch('/')
             .then(res => res.json())
             .then(data => {
-                data.data.forEach(disaster => {
-                    fetch(`/api/disasters/${disaster.id}/reports`)
-                        .then(res => res.json())
-                        .then(reportData => {
-                            console.log(reportData); // Handle disaster-specific reports
-                        });
-                });
-                setOngoingDisasterCount(data.totalCount);
+                console.log(data);
             })
-            .catch(console.error);
-
-        // Fetch jobs
-        fetch("/api/jobs")
-            .then(res => res.json())
-            .then(data => {
-                const newJobsList = data.data.map(job => ({
-                    title: job.fields.title,
-                    source: job.fields.source[0].name,
-                    closing: job.fields.date.closing,
-                    url: job.fields.url
-                }));
-                setJobList(newJobsList);
-            })
-            .catch(console.error);
     }, []);
 
 
