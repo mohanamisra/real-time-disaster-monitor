@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node services/index.js",
-    "dev": "concurrently \"vite\" \"nodemon src/services/index.js\"",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
