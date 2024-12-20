@@ -1,4 +1,4 @@
-import {fetchAllDisasters, fetchOngoingDisasters} from '../api/disasters.js';
+import {fetchAllDisasters, fetchOngoingDisasters} from '../services/disasters.js';
 import axios from 'axios';
 import {jest} from "globals";
 

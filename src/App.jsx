@@ -1,6 +1,6 @@
 import './App.css'
 import {useState, useEffect} from 'react'
-import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./api/index.js";
+import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./services/index.js";
 import Map from "./Map/Map.jsx";
 
 function App() {
