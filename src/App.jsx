@@ -6,7 +6,6 @@ import DamageAssessor from "./components/DamageAssessmentTool/DamageAssessor.jsx
 import FloodPredictor from "./components/FloodPredictor/FloodPredictor.jsx";
 
 function App() {
-
     return (
         <div className='app-container'>
             <header>
