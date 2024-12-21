@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {useState, useEffect} from 'react'
-import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport} from "../../api/index.js";
+import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport} from "../../services/index.js";
 
 const Overview = () => {
     const [totalDisasterCount, setTotalDisasterCount] = useState(0);
