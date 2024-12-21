@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from "react";
-import {fetchJobs} from "../../api/index.js";
+import {fetchJobs} from "../../services/index.js";
 
 const Jobs = () => {
     const [jobsList, setJobList] = useState([]);
