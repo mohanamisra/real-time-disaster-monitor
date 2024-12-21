@@ -1,7 +1,7 @@
 import './App.css'
 import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport, fetchJobs} from "./api/index.js";
-import Map from "./Map/Map.jsx";
+import Map from "./components/Map/Map.jsx";
 
 function App() {
     const [totalDisasterCount, setTotalDisasterCount] = useState(0);
