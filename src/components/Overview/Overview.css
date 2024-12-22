@@ -1,3 +1,29 @@
 .overview {
-    padding-left: 10px;
+    /*border: 1px solid red;*/
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 28px;
+    z-index: 100;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*border: 1px solid blue;*/
+    font-style: italic;
+    margin-bottom: 4px;
+}
+
+.data {
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: normal;
+    color: black;
+}
+
+.border {
+    width: 75%;
+    margin: 20px auto;
+    border-bottom: 3px solid #999999;
 }
