@@ -14,9 +14,7 @@ function App() {
 
             <section className="dashboard-content">
                 <section className='sidebar'>
-                    <section className="overview">
-                        <Overview/>
-                    </section>
+                    <Overview/>
                     <section className="help-out">
                         <div className="content">
                             <h2>Help Out</h2>
