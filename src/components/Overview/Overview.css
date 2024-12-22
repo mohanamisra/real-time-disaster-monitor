@@ -1,4 +1,3 @@
-.overview>h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
+.overview {
+    padding-left: 10px;
 }
