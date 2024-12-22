@@ -15,14 +15,7 @@ function App() {
             <section className="dashboard-content">
                 <section className='sidebar'>
                     <Overview/>
-                    <section className="help-out">
-                        <div className="content">
-                            <h2>Help Out</h2>
-                            <input type="search"/>
-                            <p>Provide assistance and relief to disaster affected individuals.</p>
-                            <Jobs/>
-                        </div>
-                    </section>
+                    <Jobs/>
                 </section>
 
                 <div className="general-area">
