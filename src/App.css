@@ -41,10 +41,6 @@ h2 {
     /*border: 1px solid blue;*/
 }
 
-.overview {
-    max-height: 200px;
-}
-
 .general-area {
     flex-grow: 10;
     display: flex;
