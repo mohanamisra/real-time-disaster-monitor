@@ -3,6 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    background: #F0F0F0;
+    color: #222222;
 }
 
 .app-container {
@@ -20,6 +22,7 @@ header {
 h2 {
     font-size: 1.5rem;
     font-weight: 500;
+    color: black;
 }
 
 .content {
