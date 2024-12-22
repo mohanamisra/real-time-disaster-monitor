@@ -19,7 +19,11 @@ header {
 
 h2 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 500;
+}
+
+.content {
+    font-size: 1rem;
 }
 
 .dashboard-content {
