@@ -48,6 +48,7 @@ const Overview = () => {
                         className="data">{numShelters}</span></li>
                 </ul>
             </div>
+            <div className = "border"></div>
         </section>
     );
 };
