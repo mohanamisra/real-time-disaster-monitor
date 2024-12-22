@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport} from "../../services/index.js";
+import './Overview.css'
 
 const Overview = () => {
     const [totalDisasterCount, setTotalDisasterCount] = useState(0);
@@ -35,7 +36,7 @@ const Overview = () => {
     }, []);
 
     return (
-        <>
+        <section className = "overview">
             <h2>General Overview</h2>
             <div className="content">
                 <ul>
@@ -47,7 +48,8 @@ const Overview = () => {
                         className="data">{numShelters}</span></li>
                 </ul>
             </div>
-        </>
+            <div className = "border"></div>
+        </section>
     );
 };
 

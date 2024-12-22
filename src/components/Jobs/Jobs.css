@@ -1,0 +1,45 @@
+.help-out {
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-right: 28px;
+    margin-bottom: 20px;
+}
+
+.content>p {
+    font-style: italic;
+    margin-top: 8px;
+}
+
+.content>input {
+    margin-top: 8px;
+}
+
+.jobs {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.job-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-style: normal;
+    font-size: 0.95rem;
+}
+
+.job-card>.title {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.job-card>.url>a {
+    color: #0077b6;
+}
+
+.job-card>span>.label {
+    font-weight: 500;
+}

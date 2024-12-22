@@ -2,13 +2,31 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background: #F0F0F0;
+    color: #222222;
 }
 
 .app-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 100vw;
+    max-width: 100vw;
+}
+
+header {
+    font-size: 1.5rem;
+    padding-left: 10px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: black;
+}
+
+.content {
+    font-size: 1rem;
 }
 
 .dashboard-content {
@@ -24,10 +42,6 @@
     display: flex;
     flex-direction: column;
     /*border: 1px solid blue;*/
-}
-
-.overview {
-    max-height: 200px;
 }
 
 .general-area {
