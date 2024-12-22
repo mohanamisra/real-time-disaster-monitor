@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 .app-container {
@@ -9,6 +10,15 @@
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+}
+
+header {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .dashboard-content {
