@@ -5,14 +5,22 @@ import 'leaflet/dist/leaflet.css';
 
 import './Map.css';
 
-// Custom Icon
 const earthquakeIcon = new L.Icon({
     iconUrl: 'https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-2x-orange.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png',
-    iconSize: [25, 41], // Size of the icon
-    iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
-    popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
-    shadowSize: [41, 41], // Size of the shadow
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+});
+
+const cycloneIcon = new L.Icon({
+    iconUrl: 'https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
 });
 
 const Map = () => {
@@ -53,7 +61,39 @@ const Map = () => {
     ];
 
     const cycloneLocations = [
-        
+        [14.4426, 79.9865, 1],
+        [17.3213, 82.0407, 1],
+        [16.6100, 80.7214, 1],
+        [21.4934, 86.9135, 1],
+        [20.5035, 86.4199, 1],
+        [20.2549, 86.1706, 1],
+        [21.0574, 86.4963, 1],
+        [16.7344, 82.2153, 1],
+        [22.1367, 88.5565, 1],
+        [22.4257, 87.3199, 1],
+        [18.2949, 83.8938, 2],
+        [16.3067, 80.4365, 2],
+        [17.6868, 83.2185, 2],
+        [16.9174, 81.3399, 2],
+        [15.3485, 79.5603, 2],
+        [18.1067, 83.3956, 2],
+        [20.7181, 70.9858, 2],
+        [21.5222, 70.4579, 2],
+        [23.7337, 69.8597, 2],
+        [10.57, 72.64, 2],
+        [19.3871, 85.0523, 2],
+        [19.8135, 85.8312, 2],
+        [20.1863, 85.6223, 2],
+        [10.9254, 79.8380, 2],
+        [10.3833, 78.8001, 2],
+        [11.7480, 79.7714, 2],
+        [12.8372, 79.7042, 2],
+        [10.7661, 79.6344, 2],
+        [10.7672, 79.8449, 2],
+        [13.0843, 80.2705, 2],
+        [9.3639, 78.8395, 2],
+        [8.7642, 78.1348, 2],
+        [8.7150, 77.7656, 2]
     ]
 
     return (
@@ -67,6 +107,15 @@ const Map = () => {
                     <Popup>
                         <div style={{background: 'white'}}>
                             Earthquake Zone Classification: {location[2]}
+                        </div>
+                    </Popup>
+                </Marker>
+            ))}
+            {cycloneLocations.map((location, i) => (
+                <Marker position={location} icon={cycloneIcon} key={i}>
+                    <Popup>
+                        <div style={{background: 'white'}}>
+                            Cyclone Risk: {location[2] === 2 ? <span>High</span>:<span>Very High</span>}
                         </div>
                     </Popup>
                 </Marker>
