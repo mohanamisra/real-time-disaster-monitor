@@ -1,3 +1,7 @@
 Popup>div {
     display: none;
 }
+
+.location-info {
+    background: white;
+}
