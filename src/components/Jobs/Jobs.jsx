@@ -38,10 +38,13 @@ const Jobs = () => {
                 <ul className="jobs">
                     {jobsList.map((job, index) => (
                         <li className = "job-card" key={index}>
-                            <span className="title">{job.title}</span>
-                            <span className="source"><span className = "label">Employer</span>: {job.source}</span>
-                            <span className="closing"><span className = "label">Apply by</span>: {job.closing}</span>
-                            <span className="url"><span className = "label">Apply here:</span> <a href={job.url} aria-label="third-party link to apply to the jobs">Click here</a></span>
+                            <div className="card-top">
+                                <span className="title">{job.title}</span>
+                                <span className="url"><span className="label"></span> <a href={job.url}
+                                                                                                    aria-label="third-party link to apply to the jobs">(Click to Apply)</a></span>
+                            </div>
+                            <span className="source"><span className="label">Employer</span>: {job.source}</span>
+                            <span className="closing"><span className= "label">Apply by</span>: {job.closing}</span>
                         </li>
                     ))}
                 </ul>

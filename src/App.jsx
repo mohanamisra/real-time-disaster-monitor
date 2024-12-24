@@ -15,6 +15,7 @@ function App() {
             <section className="dashboard-content">
                 <section className='sidebar'>
                     <Overview/>
+                    <Jobs/>
                 </section>
 
                 <div className="general-area">
@@ -22,7 +23,6 @@ function App() {
                         <Map/>
                     </section>
                     <section className="tools">
-                        <Jobs/>
                         <FloodPredictor/>
                         <DamageAssessor/>
                     </section>

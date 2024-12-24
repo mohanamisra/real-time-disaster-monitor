@@ -2,7 +2,7 @@
     padding-left: 10px;
     margin-left: 10px;
     margin-right: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 4px;
 }
 
 .content>p {
@@ -31,12 +31,12 @@
     font-size: 0.95rem;
 }
 
-.job-card>.title {
+.job-card>div>.title {
     font-weight: 600;
     font-size: 1.05rem;
 }
 
-.job-card>.url>a {
+.job-card>div>.url>a {
     color: #0077b6;
 }
 
