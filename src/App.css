@@ -40,7 +40,7 @@ h2 {
 
 .sidebar {
     flex-grow: 1;
-    max-width: 400px;
+    max-width: min(500px, fit-content);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
