@@ -1,10 +1,15 @@
 import React from 'react';
 import {useEffect, useState} from "react";
 import {fetchJobs} from "../../services/index.js";
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import './Jobs.css'
+import TextField from "@mui/material/TextField";
+
+const filter = createFilterOptions();
 
 const Jobs = () => {
     const [jobsList, setJobList] = useState([]);
+    const [value, setValue] = useState(null);
 
     useEffect(() => {
         fetchJobs()
@@ -33,7 +38,59 @@ const Jobs = () => {
         <section className="help-out">
             <div className="content">
                 <h2>Help Out</h2>
-                <input type="search"/>
+                {/*<input type="search"/>*/}
+                <Autocomplete
+                    value={value}
+                    onChange={(event, newValue) => {
+                        if (typeof newValue === 'string') {
+                            setValue({
+                                title: newValue,
+                            });
+                        } else if (newValue && newValue.inputValue) {
+                            // Create a new value from the user input
+                            setValue({
+                                title: newValue.inputValue,
+                            });
+                        } else {
+                            setValue(newValue);
+                        }
+                    }}
+                    filterOptions={(options, params) => {
+                        const filtered = filter(options, params);
+
+                        const { inputValue } = params;
+                        const isExisting = options.some((option) => inputValue === option.title);
+                        return filtered;
+                    }}
+                    selectOnFocus
+                    clearOnBlur
+                    handleHomeEndKeys
+                    id="free-solo-with-text-demo"
+                    options={jobsList}
+                    getOptionLabel={(option) => {
+                        if (typeof option === 'string') {
+                            return option;
+                        }
+                        if (option.inputValue) {
+                            return option.inputValue;
+                        }
+                        return option.title;
+                    }}
+                    renderOption={(props, option) => {
+                        const { key, ...optionProps } = props;
+                        return (
+                            <li key={key} {...optionProps}>
+                                {option.title}
+                            </li>
+                        );
+                    }}
+                    sx={{ width: 300 }}
+                    freeSolo
+                    renderInput={(params) => (
+                        <TextField {...params} label="Search for Jobs" />
+                    )}
+                />
+
                 <p>Provide assistance and relief to disaster affected individuals.</p>
                 <ul className="jobs">
                     {jobsList.map((job, index) => (
