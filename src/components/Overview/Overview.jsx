@@ -74,9 +74,9 @@ const Overview = () => {
                 })
                 setOngoingDisasterCount(response.data.totalCount)
             });
-        calcTotalHospitalsAffected();
-        calcTotalSchoolsAffected();
-        calcNearbyShelters();
+        // calcTotalHospitalsAffected();
+        // calcTotalSchoolsAffected();
+        // calcNearbyShelters();
     }, []);
 
     return (

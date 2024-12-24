@@ -38,7 +38,7 @@ const Map = () => {
     const indiaPosition = [22.3511148, 78.6677428];
     const zoomLevel = 5;
     const [hospitalCount, setHospitalCount] = useState(null);
-    const [selectedLocation, setSelectedLocation] = useState(null); // Store the location of the selected marker
+    const [selectedLocation, setSelectedLocation] = useState(null);
 
 
     const handleMarkerClick = async (latitude, longitude) => {
@@ -47,7 +47,7 @@ const Map = () => {
             setHospitalCount(count);
             setSelectedLocation([latitude, longitude]);
         } catch (error) {
-            alert('Error fetching count of nearby hospitals', error);
+            console.log('Error fetching count of nearby hospitals', error);
         }
     };
 
