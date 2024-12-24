@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport} from "../../services/index.js";
+import {fetchNearbyHospitals} from "../../services/nearby.js";
 import './Overview.css'
 
 const Overview = () => {
@@ -9,30 +10,31 @@ const Overview = () => {
     const [ongoingDisasterCount, setOngoingDisasterCount] = useState(0);
     const [numAffected, setNumAffected] = useState(0);
     const [numShelters, setNumShelters] = useState(0);
+    const [totalHospitalsCount, setTotalHospitalsCount] = useState(0);
 
     useEffect(() => {
-        fetchAllDisasters()
-            .then(response => {
-                setTotalDisasterCount(response.data.totalCount)
-            });
-
-        fetchOngoingDisasters()
-            .then(response => {
-                response.data.data.forEach(disaster => {
-                    fetchDisasterReport(Number(disaster.id))
-                        .then(response => {
-                            const reportUrl = response.data.data[0].fields.url;
-                            axios.get(`http://localhost:3000/fetch-report?url=${encodeURIComponent(reportUrl)}`)
-                                .then(response => {
-                                    console.log(response.data.report); // Log the report content
-                                })
-                                .catch(error => {
-                                    console.error("Error fetching report from server:", error);
-                                });
-                        })
-                })
-                setOngoingDisasterCount(response.data.totalCount)
-            });
+        // fetchAllDisasters()
+        //     .then(response => {
+        //         setTotalDisasterCount(response.data.totalCount)
+        //     });
+        //
+        // fetchOngoingDisasters()
+        //     .then(response => {
+        //         response.data.data.forEach(disaster => {
+        //             fetchDisasterReport(Number(disaster.id))
+        //                 .then(response => {
+        //                     const reportUrl = response.data.data[0].fields.url;
+        //                     axios.get(`http://localhost:3000/fetch-report?url=${encodeURIComponent(reportUrl)}`)
+        //                         .then(response => {
+        //                             console.log(response.data.report); // Log the report content
+        //                         })
+        //                         .catch(error => {
+        //                             console.error("Error fetching report from server:", error);
+        //                         });
+        //                 })
+        //         })
+        //         setOngoingDisasterCount(response.data.totalCount)
+        //     });
     }, []);
 
     return (
