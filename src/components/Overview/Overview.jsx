@@ -3,16 +3,16 @@ import axios from 'axios';
 import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport} from "../../services/index.js";
 import {fetchAffectedHospitals, fetchAffectedSchools, fetchNearbyShelters} from "../../services/nearby.js";
-import {earthquakeLocations, cycloneLocations, landslideLocations} from "../../services/data.js";
+import {earthquakeLocations, cycloneLocations, landslideLocations, NDMABudget} from "../../services/data.js";
 import './Overview.css'
 
 const Overview = () => {
     const [totalDisasterCount, setTotalDisasterCount] = useState(null);
     const [ongoingDisasterCount, setOngoingDisasterCount] = useState(null);
     const [numAffected, setNumAffected] = useState(null);
-    const [numShelters, setNumShelters] = useState(60);
-    const [totalHospitalsCount, setTotalHospitalsCount] = useState(237);
-    const [totalSchoolsCount, setTotalSchoolsCount] = useState(26);
+    const [numShelters, setNumShelters] = useState(null);
+    const [totalHospitalsCount, setTotalHospitalsCount] = useState(null);
+    const [totalSchoolsCount, setTotalSchoolsCount] = useState(null);
     const allLocations = [...earthquakeLocations, ...cycloneLocations, ...landslideLocations];
 
     const calcTotalHospitalsAffected = async () => {
@@ -74,8 +74,8 @@ const Overview = () => {
                 })
                 setOngoingDisasterCount(response.data.totalCount)
             });
-        // calcTotalHospitalsAffected();
-        // calcTotalSchoolsAffected();
+        calcTotalHospitalsAffected();
+        calcTotalSchoolsAffected();
         calcNearbyShelters();
     }, []);
 
@@ -86,10 +86,20 @@ const Overview = () => {
                 <ul>
                     <li>Total Disasters Count: <span className="data">{totalDisasterCount}</span></li>
                     <li>Ongoing Disasters: <span className="data">{ongoingDisasterCount}</span></li>
-                    <li>Total People Affected Currently (estimated): <span
-                        className="data">{numAffected}</span></li>
-                    <li>No. of Active Shelters near Ongoing Disasters <span
-                        className="data">{numShelters}</span></li>
+                        {/*<li>Total People Affected Currently (estimated): <span*/}
+                        {/*    className="data">{numAffected}</span></li>*/}
+                    <li>No. of Active Shelters near Ongoing Disasters
+                        <span className="data">{numShelters ? numShelters : 60}</span>
+                    </li>
+                    <li>Total Hospitals vulnerable:
+                        <span className="data">{totalHospitalsCount ? totalHospitalsCount : 237}</span>
+                    </li>
+                    <li>Total Schools vulnerable:
+                        <span className="data">{totalSchoolsCount ? totalSchoolsCount : 26}</span>
+                    </li>
+                    <li>National Budget assigned for National Disaster Management Authority (NDMA):
+                        <span className="data">{NDMABudget}+ Cr (INR)</span>
+                    </li>
                 </ul>
             </div>
             <div className = "border"></div>

@@ -139,3 +139,5 @@ export const landslideLocations = [
     [25.5488, 92.3814],
     [31.4685, 76.2708]
 ]
+
+export const NDMABudget = 9500;
