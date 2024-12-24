@@ -21,7 +21,6 @@ const Jobs = () => {
                     let dateVals = date.split("/");
                     dateVals = dateVals.reverse();
                     let jobDate = dateVals.join("/");
-                    console.log(dateVals);
                     const newJob = {
                         title: job.fields.title,
                         source: job.fields.source[0].name,
