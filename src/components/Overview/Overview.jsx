@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {useState, useEffect} from 'react'
 import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport} from "../../services/index.js";
-import {fetchAffectedHospitals, fetchAffectedSchools} from "../../services/nearby.js";
+import {fetchAffectedHospitals, fetchAffectedSchools, fetchNearbyShelters} from "../../services/nearby.js";
 import {earthquakeLocations, cycloneLocations, landslideLocations} from "../../services/data.js";
 import './Overview.css'
 
@@ -10,7 +10,7 @@ const Overview = () => {
     const [totalDisasterCount, setTotalDisasterCount] = useState(null);
     const [ongoingDisasterCount, setOngoingDisasterCount] = useState(null);
     const [numAffected, setNumAffected] = useState(null);
-    const [numShelters, setNumShelters] = useState(null);
+    const [numShelters, setNumShelters] = useState(60);
     const [totalHospitalsCount, setTotalHospitalsCount] = useState(237);
     const [totalSchoolsCount, setTotalSchoolsCount] = useState(26);
     const allLocations = [...earthquakeLocations, ...cycloneLocations, ...landslideLocations];
@@ -24,7 +24,7 @@ const Overview = () => {
         const hospitalIdsArrays = await Promise.all(hospitalPromises);
         const uniqueHospitalIds = new Set(hospitalIdsArrays.flat());
         const uniqueHospitalCount = uniqueHospitalIds.size;
-        setTotalSchoolsCount(uniqueHospitalCount);
+        setTotalHospitalsCount(uniqueHospitalCount);
     };
 
     const calcTotalSchoolsAffected = async () => {
@@ -37,6 +37,18 @@ const Overview = () => {
         const uniqueSchoolIds = new Set(schoolIdsArrays.flat());
         const uniqueSchoolCount = uniqueSchoolIds.size;
         setTotalSchoolsCount(uniqueSchoolCount);
+    };
+
+    const calcNearbyShelters = async () => {
+        const shelterPromises = allLocations.map(async (location) => {
+            const shelters = await fetchNearbyShelters(location[0], location[1]);
+            return shelters.map(shelters => shelters.id);
+        });
+
+        const shelterIdsArrays = await Promise.all(shelterPromises);
+        const uniqueShelterIds = new Set(shelterIdsArrays.flat());
+        const uniqueShelterCount = uniqueShelterIds.size;
+        setNumShelters(uniqueShelterCount);
     };
 
     useEffect(() => {
@@ -62,8 +74,9 @@ const Overview = () => {
                 })
                 setOngoingDisasterCount(response.data.totalCount)
             });
-        calcTotalHospitalsAffected();
-        calcTotalSchoolsAffected();
+        // calcTotalHospitalsAffected();
+        // calcTotalSchoolsAffected();
+        calcNearbyShelters();
     }, []);
 
     return (
