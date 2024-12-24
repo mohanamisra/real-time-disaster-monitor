@@ -84,10 +84,10 @@ const Jobs = () => {
                             </li>
                         );
                     }}
-                    sx={{ width: 300 }}
+                    style={{width: '90%', margin: '12px 0px'}}
                     freeSolo
                     renderInput={(params) => (
-                        <TextField {...params} label="Search for Jobs" />
+                        <TextField {...params} label="Search for Jobs" size="small"/>
                     )}
                 />
 
