@@ -39,7 +39,7 @@ const Map = () => {
     const zoomLevel = 5;
     const [hospitalCount, setHospitalCount] = useState(null);
     const [selectedLocation, setSelectedLocation] = useState(null); // Store the location of the selected marker
-    
+
 
     const handleMarkerClick = async (latitude, longitude) => {
         try {
