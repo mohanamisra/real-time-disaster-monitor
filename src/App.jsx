@@ -4,7 +4,6 @@ import Map from "./components/Map/Map.jsx";
 import Jobs from "./components/Jobs/Jobs.jsx";
 import DamageAssessor from "./components/DamageAssessmentTool/DamageAssessor.jsx";
 import HeatWavePredictor from "./components/HeatWavePredictor/HeatWavePredictor.jsx";
-import StormPredictor from "./components/StormPredictorTool/StormPredictor.jsx";
 
 function App() {
     return (
@@ -25,9 +24,6 @@ function App() {
                     </section>
                     <section className="tools">
                         <HeatWavePredictor/>
-                        <StormPredictor/>
-                    </section>
-                    <section className = "ai-tools">
                         <DamageAssessor/>
                     </section>
                 </div>
