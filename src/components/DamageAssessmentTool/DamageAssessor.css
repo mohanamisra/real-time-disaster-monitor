@@ -4,11 +4,11 @@
     max-width: max(50%, 500px);
 }
 
-.ai-damage-assessment>p>.label {
+p>.label {
     font-weight: 600;
 }
 
-.ai-damage-assessment>p {
+p {
     margin-top: 6px;
     line-height: 1.5rem;
 }

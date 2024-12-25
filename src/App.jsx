@@ -3,7 +3,7 @@ import Overview from "./components/Overview/Overview.jsx";
 import Map from "./components/Map/Map.jsx";
 import Jobs from "./components/Jobs/Jobs.jsx";
 import DamageAssessor from "./components/DamageAssessmentTool/DamageAssessor.jsx";
-import FloodPredictor from "./components/FloodPredictor/FloodPredictor.jsx";
+import HeatWavePredictor from "./components/HeatWavePredictor/HeatWavePredictor.jsx";
 
 function App() {
     return (
@@ -23,7 +23,7 @@ function App() {
                         <Map/>
                     </section>
                     <section className="tools">
-                        <FloodPredictor/>
+                        <HeatWavePredictor/>
                         <DamageAssessor/>
                     </section>
                 </div>
