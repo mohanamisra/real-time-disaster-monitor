@@ -3,9 +3,6 @@
     margin-left: 10px;
     margin-right: 28px;
     margin-bottom: 4px;
-    max-height: 100%;
-    padding-right: 10%;
-    border-right: 3px solid #cfcaca;
 }
 
 .content>p {
@@ -14,6 +11,7 @@
 }
 
 .jobs {
+    max-height: 400px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
