@@ -60,19 +60,23 @@ const Overview = () => {
         fetchOngoingDisasters()
             .then(response => {
                 response.data.data.forEach(disaster => {
-                    fetchDisasterReport(Number(disaster.id))
-                        .then(response => {
-                            const reportUrl = response.data.data[0].fields.url;
-                            axios.get(`http://localhost:3000/fetch-report?url=${encodeURIComponent(reportUrl)}`)
-                                .then(response => {
-                                    console.log(response.data.report); // Log the report content
-                                })
-                                .catch(error => {
-                                    console.error("Error fetching report from server:", error);
-                                });
-                        })
+                    // fetchDisasterReport(Number(disaster.id))
+                    //     .then(response => {
+                    //         const reportUrl = response.data.data[0].fields.url;
+                    //         axios.get(`http://localhost:3000/fetch-report?url=${encodeURIComponent(reportUrl)}`)
+                    //             .then(response => {
+                    //                 console.log(response.data.report); // Log the report content
+                    //             })
+                    //             .catch(error => {
+                    //                 console.error("Error fetching report from server:", error);
+                    //             });
+                    //     })
                 })
                 setOngoingDisasterCount(response.data.totalCount)
+            });
+        axios.get("http://localhost:3000/elevation")
+            .then(response => {
+                console.log(response.data.results[0].elevation);
             });
     }, []);
 
