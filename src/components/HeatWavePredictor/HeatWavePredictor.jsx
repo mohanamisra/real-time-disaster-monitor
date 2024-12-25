@@ -11,7 +11,6 @@ const HeatWavePredictor = () => {
     const [maxTemp, setMaxTemp] = useState(null);
     const [elevation, setElevation] = useState(null);
     const [heatwave, setHeatwave] = useState(null);
-    const [windSpeed, setWindSpeed] = useState(null);
 
     const handleInputChange = (e) => {
         let newLocationInput = e.target.value.toLowerCase();
@@ -28,9 +27,6 @@ const HeatWavePredictor = () => {
         //         fetchWeather(lat, long)
         //             .then(response => {
         //                 const max_temp = response.data.main.temp_max;
-        //                 const wind_speed = response.data.wind.speed;
-        //                 setWindSpeed(wind_speed);
-        //                 console.log(wind_speed);
         //                 fetchHeatWaveReport(lat, long)
         //                     .then(response => {
         //                         const new_elevation = response.data.results[0].elevation;
