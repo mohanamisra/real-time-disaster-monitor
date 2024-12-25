@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import {useState, useEffect} from 'react'
-import {fetchAllDisasters, fetchOngoingDisasters, fetchDisasterReport} from "../../services/index.js";
+import {fetchAllDisasters, fetchOngoingDisasters} from "../../services/index.js";
 import {fetchAffectedHospitals, fetchAffectedSchools, fetchNearbyShelters} from "../../services/nearby.js";
 import {earthquakeLocations, cycloneLocations, landslideLocations, NDMABudget} from "../../services/data.js";
 import './Overview.css'
@@ -73,10 +72,6 @@ const Overview = () => {
                     //     })
                 })
                 setOngoingDisasterCount(response.data.totalCount)
-            });
-        axios.get("http://localhost:3000/elevation")
-            .then(response => {
-                console.log(response.data.results[0].elevation);
             });
     }, []);
 
