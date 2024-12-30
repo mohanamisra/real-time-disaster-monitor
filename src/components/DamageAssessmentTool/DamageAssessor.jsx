@@ -4,27 +4,14 @@ import * as tf from "@tensorflow/tfjs";
 import uploadImage from "../../assets/upload_image.webp";
 import Modal from 'react-modal';
 
-const labels = [
-    "Flood",
-    "Earthquake",
-    "Wildfire",
-    "Tornado",
-    "Hurricane",
-    "Volcano",
-    "Drought",
-    "Landslide",
-    "Tsunami",
-    "Snowstorm",
-    "Thunderstorm",
-    "Hailstorm",
-    "Other"
-];
+const labels = ['damage_drought', 'damage_earthquake', 'damage_human', 'damage_infrastructure', 'damage_landslide', 'damage_nature', 'damage_urbanfire', 'damage_water', 'damage_wildfire', 'no_damage_human', 'no_damage_infrastructure', 'no_damage_nature', 'no_damage_water'];
 
 const DamageAssessor = () => {
     const [model, setModel] = useState(null);
     const [fileName, setFileName] = useState('');
     const [predictedClass, setPredictedClass] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [imageDataUrl, setImageDataUrl] = useState(''); // Store the image data URL
 
     useEffect(() => {
         const loadModel = async () => {
@@ -59,10 +46,15 @@ const DamageAssessor = () => {
         if (file && ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(file.type)) {
             setFileName(file.name);
 
+            // Create a data URL for the uploaded image
+            const imageUrl = URL.createObjectURL(file);
+            setImageDataUrl(imageUrl);
+
             if (model) {
                 const preprocessedImage = await preprocessImage(file);
                 const prediction = model.predict(preprocessedImage).arraySync();
-                const predictedIndex = prediction.indexOf(Math.max(...prediction));
+                const flatPrediction = prediction.flat();
+                const predictedIndex = flatPrediction.indexOf(Math.max(...flatPrediction));
                 const predictedLabel = labels[predictedIndex];
 
                 setPredictedClass(predictedLabel);
@@ -115,6 +107,9 @@ const DamageAssessor = () => {
                 overlayClassName="overlay"
             >
                 <h2>Prediction Result</h2>
+                <div>
+                    <img src={imageDataUrl} alt="Uploaded" className="uploaded-image" style={{width:"300px"}}/>
+                </div>
                 <p>The uploaded image belongs to the class: <strong>{predictedClass}</strong></p>
                 <button onClick={() => setIsModalOpen(false)}>Close</button>
             </Modal>
