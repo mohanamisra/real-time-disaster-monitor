@@ -19,32 +19,32 @@ const HeatWavePredictor = () => {
     }
 
     const handleSubmit = (e) => {
-        // fetchLocationCoords(locationInput)
-        //     .then(response => {
-        //         const lat = response.data[0].lat;
-        //         const long = response.data[0].lon;
-        //
-        //         fetchWeather(lat, long)
-        //             .then(response => {
-        //                 const max_temp = response.data.main.temp_max;
-        //                 fetchHeatWaveReport(lat, long)
-        //                     .then(response => {
-        //                         const new_elevation = response.data.results[0].elevation;
-        //                         setMaxTemp(max_temp);
-        //                         setElevation(new_elevation);
-        //                         displayHeatwaveReport(max_temp, new_elevation);
-        //                     })
-        //             })
-        //     });
+        fetchLocationCoords(locationInput)
+            .then(response => {
+                const lat = response.data[0].lat;
+                const long = response.data[0].lon;
+
+                fetchWeather(lat, long)
+                    .then(response => {
+                        const max_temp = response.data.main.temp_max;
+                        fetchHeatWaveReport(lat, long)
+                            .then(response => {
+                                const new_elevation = response.data.results[0].elevation;
+                                setMaxTemp(max_temp);
+                                setElevation(new_elevation);
+                                displayHeatwaveReport(max_temp, new_elevation);
+                            })
+                    })
+            });
         setSubmitted(true);
         // MOCK DATA FOR DEV
-        const lat = 28.6517178;
-        const long = 77.2219388;
-        const max_temp = 15;
-        const new_elevation = 226;
-        setMaxTemp(max_temp);
-        setElevation(new_elevation);
-        displayHeatwaveReport(max_temp, new_elevation);
+        // const lat = 28.6517178;
+        // const long = 77.2219388;
+        // const max_temp = 15;
+        // const new_elevation = 226;
+        // setMaxTemp(max_temp);
+        // setElevation(new_elevation);
+        // displayHeatwaveReport(max_temp, new_elevation);
     }
 
     const displayHeatwaveReport = (max_temp, elevation) => {
