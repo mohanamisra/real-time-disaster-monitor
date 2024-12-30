@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://real-time-disaster-monitoring-backend.onrender.com'; // Production URL
+const BASE_URL = 'https://real-time-disaster-monitoring-backend.onrender.com';
 
 export const fetchLocationCoords = async (locationName) => {
     console.log(locationName);
