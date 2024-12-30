@@ -118,3 +118,7 @@
 .modal-content>p>.data {
     font-size: 1.3rem;
 }
+
+.label {
+    font-weight: 600;
+}

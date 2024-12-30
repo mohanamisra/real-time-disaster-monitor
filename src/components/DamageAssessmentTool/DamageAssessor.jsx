@@ -115,7 +115,7 @@ const DamageAssessor = () => {
         },
         9: {
             text: "No damage detected",
-            url: "https://ndma.gov.in/index.php/Natural-Hazards/Urban-Floods",
+            url: "",
         },
     }
 
@@ -127,7 +127,7 @@ const DamageAssessor = () => {
                 images.<br />
                 <span className="label">Step 2</span>: Click the submit button.<br />
                 <span className="label">Step 3</span>: A dialog box opens up.<br />
-                <span className="label">Step 4</span>: Review the AI analysis.<br />
+                <span className="label">Step 4</span>: Review the damage classification and linked government resources to mitigate/report damage.<br />
                 <span className="label">Step 5</span>: Close the dialog box.<br />
             </p>
             <div className="upload-section">
