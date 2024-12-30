@@ -15,7 +15,7 @@ const DamageAssessor = () => {
 
     useEffect(() => {
         const loadModel = async () => {
-            const modelUrl = `public/tfjs_model/model.json`;
+            const modelUrl = `/tfjs_model/model.json`;
             try {
                 const loadedModel = await tf.loadLayersModel(modelUrl);
                 setModel(loadedModel);
