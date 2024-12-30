@@ -1,14 +1,14 @@
-import express from 'express';
-import axios from 'axios';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { onRequest } from "firebase-functions/v2/https";
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
 dotenv.config();
+
 const app = express();
 app.use(cors());
 
-app.get('/api/location', async (req, res) => {
+app.get('/location', async (req, res) => {
     const { locationName } = req.query;
     if (!locationName) {
         return res.status(400).json({ error: 'Location name is required.' });
@@ -22,7 +22,7 @@ app.get('/api/location', async (req, res) => {
     }
 });
 
-app.get('/api/weather', async (req, res) => {
+app.get('/weather', async (req, res) => {
     const { lat, long } = req.query;
     if (!lat || !long) {
         return res.status(400).json({ error: 'Latitude and Longitude are required.' });
@@ -35,7 +35,7 @@ app.get('/api/weather', async (req, res) => {
     }
 });
 
-app.get('/api/elevation', async (req, res) => {
+app.get('/elevation', async (req, res) => {
     const { lat, long } = req.query;
     if (!lat || !long) {
         return res.status(400).json({ error: 'Latitude and Longitude are required.' });
@@ -48,4 +48,5 @@ app.get('/api/elevation', async (req, res) => {
     }
 });
 
-export const server = onRequest(app);
+// Export the server as a serverless function handler
+module.exports = app;
