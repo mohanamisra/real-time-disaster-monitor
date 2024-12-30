@@ -4,14 +4,15 @@ import * as tf from "@tensorflow/tfjs";
 import uploadImage from "../../assets/upload_image.webp";
 import Modal from 'react-modal';
 
-const labels = ['damage_drought', 'damage_earthquake', 'damage_human', 'damage_infrastructure', 'damage_landslide', 'damage_nature', 'damage_urbanfire', 'damage_water', 'damage_wildfire', 'no_damage_human', 'no_damage_infrastructure', 'no_damage_nature', 'no_damage_water'];
-
+// const labels = [['damage_drought', 'damage_earthquake', 'damage_fire', 'damage_human', 'damage_infrastructure', 'damage_landslide', 'damage_water', 'no_damage_human', 'no_damage_infrastructure', 'no_damage_water']]
+const labels = ['Drought Damage', 'Earthquake Damage', 'Fire Damage', 'Injured Human', 'Infrastructure Damage', 'Landslide Damage', 'Water Disaster', 'Human', 'Undamaged Infrastructure', 'Aquatic Landscape']
 const DamageAssessor = () => {
     const [model, setModel] = useState(null);
     const [fileName, setFileName] = useState('');
     const [predictedClass, setPredictedClass] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [imageDataUrl, setImageDataUrl] = useState(''); // Store the image data URL
+    const [imageDataUrl, setImageDataUrl] = useState('');
+    const [predictedIndex, setPredictedIndex] = useState(null);
 
     useEffect(() => {
         const loadModel = async () => {
@@ -54,9 +55,11 @@ const DamageAssessor = () => {
                 const preprocessedImage = await preprocessImage(file);
                 const prediction = model.predict(preprocessedImage).arraySync();
                 const flatPrediction = prediction.flat();
-                const predictedIndex = flatPrediction.indexOf(Math.max(...flatPrediction));
-                const predictedLabel = labels[predictedIndex];
+                console.log(flatPrediction);
+                const newPredictedIndex = flatPrediction.indexOf(Math.max(...flatPrediction));
+                const predictedLabel = labels[newPredictedIndex];
 
+                setPredictedIndex(newPredictedIndex);
                 setPredictedClass(predictedLabel);
                 setIsModalOpen(true);
             } else {
@@ -72,6 +75,49 @@ const DamageAssessor = () => {
             await handleFileUpload(e.target.files[0]);
         }
     };
+
+    const resourcesMap = {
+        0: {
+            text: "Drought Management Resources",
+            url: "https://agriwelfare.gov.in/en/Drought",
+        },
+        1: {
+            text: "Earthquake-related Damage Management",
+            url: "https://ndma.gov.in/Natural-Hazards/Earthquakes",
+        },
+        2: {
+            text: "Fire-related Damage Management",
+            url: "https://ndma.gov.in/Response/Fire-Service",
+        },
+        3: {
+            text: "Post-Trauma Care Resources",
+            url: "https://www.mohfw.gov.in/?q=basicpage-6",
+        },
+        4: {
+            text: "Damaged Infrastructure Grievance Redressal",
+            url: "https://morth.nic.in/public-grievances",
+        },
+        5: {
+            text: "Landslide Damage Management",
+            url: "https://ndma.gov.in/index.php/Natural-Hazards/Landslide",
+        },
+        6: {
+            text: "Water-related Disaster Management",
+            url: "https://ndma.gov.in/index.php/Natural-Hazards/Urban-Floods",
+        },
+        7: {
+            text: "No damage detected",
+            url: "",
+        },
+        8: {
+            text: "No damage detected",
+            url: "",
+        },
+        9: {
+            text: "No damage detected",
+            url: "https://ndma.gov.in/index.php/Natural-Hazards/Urban-Floods",
+        },
+    }
 
     return (
         <div className="ai-damage-assessment">
@@ -106,12 +152,24 @@ const DamageAssessor = () => {
                 ariaHideApp={false}
                 overlayClassName="overlay"
             >
-                <h2>Prediction Result</h2>
-                <div>
-                    <img src={imageDataUrl} alt="Uploaded" className="uploaded-image" style={{width:"300px"}}/>
+                <h2 className = "modal-heading">Damage Classification</h2>
+                <img src={imageDataUrl} alt="Uploaded" className="uploaded-image" />
+                <p>Damage Detected: <strong>{predictedClass}</strong></p>
+                <button className = "modal-button" onClick={() => setIsModalOpen(false)}>Close</button>
+                <div className="modal-content">
+                    <p>Emergency Contact: <span className="data">108/112</span></p>
+                    <p>Police Services Contact: <span className="data">100</span></p>
+                    {predictedIndex !== null && resourcesMap[predictedIndex] && (
+                        <>
+                            <p className="disaster-text">{resourcesMap[predictedIndex].text}</p>
+                            {resourcesMap[predictedIndex].url && (
+                                <a className="disaster-url" href={resourcesMap[predictedIndex].url} target="_blank" rel="noopener noreferrer">
+                                    Click here to learn more
+                                </a>
+                            )}
+                        </>
+                    )}
                 </div>
-                <p>The uploaded image belongs to the class: <strong>{predictedClass}</strong></p>
-                <button onClick={() => setIsModalOpen(false)}>Close</button>
             </Modal>
         </div>
     );
