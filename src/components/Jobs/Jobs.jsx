@@ -1,8 +1,8 @@
 import React from 'react';
-import {useEffect, useState} from "react";
-import {fetchJobs} from "../../services/index.js";
+import { useEffect, useState } from "react";
+import { fetchJobs } from "../../services/index.js";
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import './Jobs.css'
+import './Jobs.css';
 import TextField from "@mui/material/TextField";
 
 const filter = createFilterOptions();
@@ -26,27 +26,28 @@ const Jobs = () => {
                         source: job.fields.source[0].name,
                         closing: jobDate,
                         url: job.fields.url,
-
                     };
                     newJobsList.push(newJob);
-                })
+                });
                 setJobList(newJobsList);
-            })
+            });
     }, []);
+
     return (
         <section className="help-out">
             <div className="content">
                 <h2>Help Out</h2>
-                {/*<input type="search"/>*/}
                 <Autocomplete
                     value={value}
                     onChange={(event, newValue) => {
-                        if (typeof newValue === 'string') {
+                        if (newValue && newValue.url) {
+                            // Redirect to the job URL
+                            window.location.href = newValue.url;
+                        } else if (typeof newValue === 'string') {
                             setValue({
                                 title: newValue,
                             });
                         } else if (newValue && newValue.inputValue) {
-                            // Create a new value from the user input
                             setValue({
                                 title: newValue.inputValue,
                             });
@@ -56,7 +57,6 @@ const Jobs = () => {
                     }}
                     filterOptions={(options, params) => {
                         const filtered = filter(options, params);
-
                         const { inputValue } = params;
                         const isExisting = options.some((option) => inputValue === option.title);
                         return filtered;
@@ -83,24 +83,24 @@ const Jobs = () => {
                             </li>
                         );
                     }}
-                    style={{width: '90%', margin: '12px 0px'}}
+                    style={{ width: '90%', margin: '12px 0px' }}
                     freeSolo
                     renderInput={(params) => (
-                        <TextField {...params} label="Search for Jobs" size="small"/>
+                        <TextField {...params} label="Search for Jobs" size="small" />
                     )}
                 />
 
-                <p>Provide assistance and relief to disaster affected individuals.</p>
+                <p>Provide assistance and relief to disaster-affected individuals.</p>
                 <ul className="jobs">
                     {jobsList.map((job, index) => (
-                        <li className = "job-card" key={index}>
+                        <li className="job-card" key={index}>
                             <div className="card-top">
                                 <span className="title">{job.title}</span>
                                 <span className="url"><span className="label"></span> <a href={job.url}
-                                                                                                    aria-label="third-party link to apply to the jobs">(Click to Apply)</a></span>
+                                                                                         aria-label="third-party link to apply to the jobs">(Click to Apply)</a></span>
                             </div>
                             <span className="source"><span className="label">Employer</span>: {job.source}</span>
-                            <span className="closing"><span className= "label">Apply by</span>: {job.closing}</span>
+                            <span className="closing"><span className="label">Apply by</span>: {job.closing}</span>
                         </li>
                     ))}
                 </ul>
