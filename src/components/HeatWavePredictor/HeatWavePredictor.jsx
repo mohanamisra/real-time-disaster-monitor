@@ -21,11 +21,15 @@ const HeatWavePredictor = () => {
     const handleSubmit = (e) => {
         fetchLocationCoords(locationInput)
             .then(response => {
+                console.log("LOCATION RESPONSE");
+                console.log(response.data)
                 const lat = response.data[0].lat;
                 const long = response.data[0].lon;
 
                 fetchWeather(lat, long)
                     .then(response => {
+                        console.log("WEATHER RESPONSE");
+                        console.log(response.data);
                         const max_temp = response.data.main.temp_max;
                         fetchHeatWaveReport(lat, long)
                             .then(response => {
