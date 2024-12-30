@@ -8,7 +8,6 @@ import './Overview.css'
 const Overview = () => {
     const [totalDisasterCount, setTotalDisasterCount] = useState(null);
     const [ongoingDisasterCount, setOngoingDisasterCount] = useState(null);
-    const [numAffected, setNumAffected] = useState(null);
     const [numShelters, setNumShelters] = useState(null);
     const [totalHospitalsCount, setTotalHospitalsCount] = useState(null);
     const [totalSchoolsCount, setTotalSchoolsCount] = useState(null);
@@ -58,20 +57,7 @@ const Overview = () => {
 
         fetchOngoingDisasters()
             .then(response => {
-                response.data.data.forEach(disaster => {
-                    // fetchDisasterReport(Number(disaster.id))
-                    //     .then(response => {
-                    //         const reportUrl = response.data.data[0].fields.url;
-                    //         axios.get(`http://localhost:3000/fetch-report?url=${encodeURIComponent(reportUrl)}`)
-                    //             .then(response => {
-                    //                 console.log(response.data.report); // Log the report content
-                    //             })
-                    //             .catch(error => {
-                    //                 console.error("Error fetching report from server:", error);
-                    //             });
-                    //     })
-                })
-                setOngoingDisasterCount(response.data.totalCount)
+                    setOngoingDisasterCount(response.data.totalCount)
             });
     }, []);
 
