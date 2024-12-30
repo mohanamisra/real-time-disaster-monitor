@@ -6,7 +6,7 @@
     color: #222222;
 }
 
-div, section {
+header, section {
     background: #F0F0F0;
 }
 
@@ -44,7 +44,6 @@ h2 {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /*border: 1px solid blue;*/
 }
 
 .general-area {
