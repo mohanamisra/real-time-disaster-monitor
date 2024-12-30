@@ -4,6 +4,7 @@ import {fetchNearbyHospitals} from "../../services/nearby.js";
 import {earthquakeLocations, cycloneLocations, landslideLocations} from "../../services/data.js";
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import Legend from "../Legend/Legend.jsx"
 
 import './Map.css';
 
@@ -57,6 +58,7 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
+            <Legend/>
             {earthquakeLocations.map((location, i) => (
                 <Marker
                     position={location}
