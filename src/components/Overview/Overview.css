@@ -9,9 +9,9 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*border: 1px solid blue;*/
+    font-size: 1.1rem;
     font-style: italic;
-    margin-bottom: 4px;
+    margin: 20px 0px;
 }
 
 .data {
