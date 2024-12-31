@@ -4,8 +4,7 @@ import * as tf from "@tensorflow/tfjs";
 import uploadImage from "../../assets/upload_image.webp";
 import Modal from 'react-modal';
 
-// const labels = [['damage_drought', 'damage_earthquake', 'damage_fire', 'damage_human', 'damage_infrastructure', 'damage_landslide', 'damage_water', 'no_damage_human', 'no_damage_infrastructure', 'no_damage_water']]
-const labels = ['Drought Damage', 'Earthquake Damage', 'Fire Damage', 'Injured Human', 'Infrastructure Damage', 'Landslide Damage', 'Water Disaster', 'Human', 'Undamaged Infrastructure', 'Aquatic Landscape']
+const labels = ['Earthquake Damage', 'Fire Damage', 'Injured Human', 'Infrastructure Damage', 'Landslide Damage', 'Water Disaster', 'Human', 'Undamaged Infrastructure', 'Aquatic Landscape']
 const DamageAssessor = () => {
     const [model, setModel] = useState(null);
     const [fileName, setFileName] = useState('');
@@ -30,15 +29,15 @@ const DamageAssessor = () => {
     const preprocessImage = async (file) => {
         const imageBitmap = await createImageBitmap(file);
         const canvas = document.createElement("canvas");
-        canvas.width = 256;
-        canvas.height = 256;
+        canvas.width = 224;
+        canvas.height = 224;
         const ctx = canvas.getContext("2d");
-        ctx.drawImage(imageBitmap, 0, 0, 256, 256);
+        ctx.drawImage(imageBitmap, 0, 0, 224, 224);
 
-        const imageData = ctx.getImageData(0, 0, 256, 256);
+        const imageData = ctx.getImageData(0, 0, 224, 224);
         let tensor = tf.browser.fromPixels(imageData)
             .expandDims()
-            .div(255.0);
+            .div(223.0);
 
         return tensor;
     };
@@ -78,42 +77,38 @@ const DamageAssessor = () => {
 
     const resourcesMap = {
         0: {
-            text: "Drought Management Resources",
-            url: "https://agriwelfare.gov.in/en/Drought",
-        },
-        1: {
             text: "Earthquake-related Damage Management",
             url: "https://ndma.gov.in/Natural-Hazards/Earthquakes",
         },
-        2: {
+        1: {
             text: "Fire-related Damage Management",
             url: "https://ndma.gov.in/Response/Fire-Service",
         },
-        3: {
+        2: {
             text: "Post-Trauma Care Resources",
             url: "https://www.mohfw.gov.in/?q=basicpage-6",
         },
-        4: {
+        3: {
             text: "Damaged Infrastructure Grievance Redressal",
             url: "https://morth.nic.in/public-grievances",
         },
-        5: {
+        4: {
             text: "Landslide Damage Management",
             url: "https://ndma.gov.in/index.php/Natural-Hazards/Landslide",
         },
-        6: {
+        5: {
             text: "Water-related Disaster Management",
             url: "https://ndma.gov.in/index.php/Natural-Hazards/Urban-Floods",
+        },
+        6: {
+            text: "No damage detected",
+            url: "",
         },
         7: {
             text: "No damage detected",
             url: "",
         },
         8: {
-            text: "No damage detected",
-            url: "",
-        },
-        9: {
             text: "No damage detected",
             url: "",
         },
