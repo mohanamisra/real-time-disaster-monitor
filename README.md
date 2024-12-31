@@ -1,6 +1,6 @@
 # Real-Time Disaster Monitoring for India
 
-### Link to the project: <a href="https://disaster-management-india.web.app/">Real-Time Disaster Management Dashboard</a>
+### Link to the project: Coming soon...(will be provided post-project bragging on LinkedIn to prevent API charges T_T)
 <em>Project structure has been explained below, as well as some points to keep in mind when using the disaster monitoring dashboard. Please check before using.</em>
 
 This project has been built in order to help users monitor the various natural disasters occurring in India.
