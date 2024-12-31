@@ -53,7 +53,7 @@ const StormPredictor = () => {
                 <span className="label">Step 1</span>: Enter your location name.<br />
                 <span className="label">Step 2</span>: Click the submit button.<br />
                 <span className="label">Step 3</span>: Review the storm prediction.<br />
-                <span className="label">Step 4 (optional)</span>: Verify our prediction sources at <a href="#">citations</a>.<br />
+                <span className="label">Step 4 (optional)</span>: Verify our prediction sources at <a href="https://ndma.gov.in/Natural-Hazards/Cyclone">citations</a>.<br />
             </p>
             <TextField
                 id="outlined-basic"

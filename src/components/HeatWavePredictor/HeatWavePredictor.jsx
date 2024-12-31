@@ -75,7 +75,7 @@ const HeatWavePredictor = () => {
                 <span className = "label">Step 1</span>: Enter your location name.<br/>
                 <span className = "label">Step 2</span>: Click the submit button.<br/>
                 <span className= "label">Step 3</span>: Review the heat wave prediction.<br/>
-                <span className= "label">Step 4 (optional)</span>: Verify our prediction sources at <a href = "#">citations</a>.<br/>
+                <span className= "label">Step 4 (optional)</span>: Verify our prediction sources at <a href = "https://internal.imd.gov.in/section/nhac/dynamic/Definition.pdf">citations</a>.<br/>
             </p>
             <TextField
                 id="outlined-basic"
