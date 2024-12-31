@@ -41,7 +41,21 @@ const StormPredictor = () => {
                             newStorm = "Super Cyclone";
 
                         setStorm(newStorm);
+                    })
+                    .catch(error => {
+                        // MOCK DATA FOR DEV
+                        alert("Unfortunately OpenWeather's API has reached its usage quota for the month. Mock weather data will be displayed to demonstrate the tool functionality. Other calculations remain as fair as ever!")
+                        const newWindSpeed = 999.999;
+                        setWindSpeed(newWindSpeed);
+                        setStorm("Cyclonic Storm")
                     });
+            })
+            .catch(error => {
+                // MOCK DATA FOR DEV
+                alert("Unfortunately OpenWeather's API has reached its usage quota for the month. Mock weather data will be displayed to demonstrate the tool functionality. Other calculations remain as fair as ever!")
+                const newWindSpeed = 999.999;
+                setWindSpeed(newWindSpeed);
+                setStorm("Cyclonic Storm")
             });
         setSubmitted(true);
     };

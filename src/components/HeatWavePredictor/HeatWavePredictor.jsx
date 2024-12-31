@@ -34,17 +34,42 @@ const HeatWavePredictor = () => {
                                 setElevation(new_elevation);
                                 displayHeatwaveReport(max_temp, new_elevation);
                             })
+                            .catch(error => {
+                                // MOCK DATA FOR DEV
+                                alert("Unfortunately OpenWeather's API has reached its usage quota for the month. Mock weather data will be displayed to demonstrate the tool functionality. Other calculations remain as fair as ever!")
+                                const lat = 28.6517178;
+                                const long = 77.2219388;
+                                const max_temp = 15;
+                                const new_elevation = 226;
+                                setMaxTemp(max_temp);
+                                setElevation(new_elevation);
+                                displayHeatwaveReport(max_temp, new_elevation);
+                            });
                     })
+                    .catch(error => {
+                    // MOCK DATA FOR DEV
+                    alert("Unfortunately OpenWeather's API has reached its usage quota for the month. Mock weather data will be displayed to demonstrate the tool functionality. Other calculations remain as fair as ever!")
+                    const lat = 28.6517178;
+                    const long = 77.2219388;
+                    const max_temp = 15;
+                    const new_elevation = 226;
+                    setMaxTemp(max_temp);
+                    setElevation(new_elevation);
+                    displayHeatwaveReport(max_temp, new_elevation);
+                });
+            })
+            .catch(error => {
+                // MOCK DATA FOR DEV
+                alert("Unfortunately OpenWeather's API has reached its usage quota for the month. Mock weather data will be displayed to demonstrate the tool functionality. Other calculations remain as fair as ever!")
+                const lat = 28.6517178;
+                const long = 77.2219388;
+                const max_temp = 15;
+                const new_elevation = 226;
+                setMaxTemp(max_temp);
+                setElevation(new_elevation);
+                displayHeatwaveReport(max_temp, new_elevation);
             });
         setSubmitted(true);
-        // MOCK DATA FOR DEV
-        // const lat = 28.6517178;
-        // const long = 77.2219388;
-        // const max_temp = 15;
-        // const new_elevation = 226;
-        // setMaxTemp(max_temp);
-        // setElevation(new_elevation);
-        // displayHeatwaveReport(max_temp, new_elevation);
     }
 
     const displayHeatwaveReport = (max_temp, elevation) => {
